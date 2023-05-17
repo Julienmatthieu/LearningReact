@@ -1,6 +1,6 @@
 import { useState } from "react";
-import ListGroup from "./components/ListGroup";
-import { IoIosAirplane } from "react-icons/io";
+import Button from "./components/Button/Button";
+import Like from "./components/Like/Like";
 
 function App() {
   const [alertVisible, setAlertVisible] = useState(false);
@@ -8,14 +8,7 @@ function App() {
 
   return (
     <div>
-      <ListGroup
-        heading="Cities"
-        items={items}
-        onSelectItem={() => console.log("Clicked")}
-      ></ListGroup>
-      <IoIosAirplane color="blue" size={40}>
-        {" "}
-      </IoIosAirplane>
+      <Like onClick={() => console.log("Clicked")}></Like>
     </div>
   );
 }
