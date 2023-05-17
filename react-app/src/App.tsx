@@ -1,7 +1,5 @@
 import { useState } from "react";
-import Button from "./components/Button/Button";
-import Like from "./components/Like/Like";
-import Person from "./components/Person/Person";
+import Drink from "./components/Drink/Drink";
 
 function App() {
   const [alertVisible, setAlertVisible] = useState(false);
@@ -9,7 +7,7 @@ function App() {
 
   return (
     <div>
-      <Person></Person>
+      <Drink></Drink>
     </div>
   );
 }
