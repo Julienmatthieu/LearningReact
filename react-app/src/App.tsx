@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Button from "./components/Button/Button";
 import Like from "./components/Like/Like";
+import Person from "./components/Person/Person";
 
 function App() {
   const [alertVisible, setAlertVisible] = useState(false);
@@ -8,7 +9,7 @@ function App() {
 
   return (
     <div>
-      <Like onClick={() => console.log("Clicked")}></Like>
+      <Person></Person>
     </div>
   );
 }
