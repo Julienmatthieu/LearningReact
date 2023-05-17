@@ -1,13 +1,21 @@
 import { useState } from "react";
-import { Bug } from "./components/Bug/Bug";
+import NavBar from "./components/NavBar";
+import Cart from "./components/Cart";
 
 function App() {
-  const [alertVisible, setAlertVisible] = useState(false);
-  const items = ["Lyon", "Paris", "Londre", "Milan"];
+  const [cartItems, setCartItems] = useState([
+    "Product1",
+    "Product2",
+    "Product3",
+    "Product4",
+    "Product5",
+    "Product6",
+  ]);
 
   return (
     <div>
-      <Bug></Bug>
+      <NavBar cartItemsCount={cartItems.length}></NavBar>
+      <Cart cartItems={cartItems} onClear={() => setCartItems([])}></Cart>
     </div>
   );
 }
