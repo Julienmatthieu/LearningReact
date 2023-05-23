@@ -7,17 +7,23 @@ interface User {
 }
 
 function App() {
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState<User[]>([]);
 
   useEffect(() => {
     // Fake data website
     // 'then will be executed when the promess is resolve
     axios
       .get<User[]>("https://jsonplaceholder.typicode.com/users")
-      .then((res) => console.log(res.data[0].name));
-  });
+      .then((res) => setUsers(res.data));
+  }, []);
 
-  return <div></div>;
+  return (
+    <ul>
+      {users.map((user) => (
+        <li key={user.id}>User: {user.name}</li>
+      ))}
+    </ul>
+  );
 }
 
 export default App;
