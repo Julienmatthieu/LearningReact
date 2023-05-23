@@ -1,14 +1,20 @@
 import { useEffect, useRef, useState } from "react";
+import axios from "axios";
 
-const connect = () => console.log("Connectiong");
-const disconnect = () => console.log("Disconnectiong");
+interface User {
+  id: number;
+  name: string;
+}
 
 function App() {
-  // Cleanup function. The return will be call when unmounted
-  useEffect(() => {
-    connect();
+  const [users, setUsers] = useState([]);
 
-    return () => disconnect();
+  useEffect(() => {
+    // Fake data website
+    // 'then will be executed when the promess is resolve
+    axios
+      .get<User[]>("https://jsonplaceholder.typicode.com/users")
+      .then((res) => console.log(res.data[0].name));
   });
 
   return <div></div>;
