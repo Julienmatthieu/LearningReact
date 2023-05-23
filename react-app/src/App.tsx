@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import axios, { AxiosError, CanceledError } from "axios";
+import { original } from "immer";
 
 interface User {
   id: number;
@@ -60,6 +61,22 @@ function App() {
       });
   };
 
+  const updateUser = (user: User) => {
+    const originalUsers = [...users];
+    const updatedUser = { ...user, name: user.name + "<-" };
+
+    setUsers(users.map((u) => (u.id === user.id ? updatedUser : u)));
+    axios
+      .patch(
+        "https://jsonplaceholder.typicode.com/users/" + user.id,
+        updateUser
+      )
+      .catch((err) => {
+        setError(err.message);
+        setUsers(originalUsers);
+      });
+  };
+
   return (
     <>
       {error && <p className="text-danger">{error}</p>}
@@ -74,12 +91,20 @@ function App() {
             className="list-group-item d-flex justify-content-between"
           >
             User: {user.name}
-            <button
-              className="btn btn-outline-danger"
-              onClick={() => deleteUser(user)}
-            >
-              Delete
-            </button>
+            <div>
+              <button
+                className="btn btn-outline-secondary mx-1"
+                onClick={() => updateUser(user)}
+              >
+                Update
+              </button>
+              <button
+                className="btn btn-outline-danger"
+                onClick={() => deleteUser(user)}
+              >
+                Delete
+              </button>
+            </div>
           </li>
         ))}
       </ul>
