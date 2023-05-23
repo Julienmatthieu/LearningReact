@@ -1,22 +1,17 @@
 import { useEffect, useRef, useState } from "react";
-import ProductList from "./components/ProductList";
+
+const connect = () => console.log("Connectiong");
+const disconnect = () => console.log("Disconnectiong");
 
 function App() {
-  const [category, setCategory] = useState("");
+  // Cleanup function. The return will be call when unmounted
+  useEffect(() => {
+    connect();
 
-  return (
-    <div>
-      <select
-        className="form-select"
-        onChange={(event) => setCategory(event.target.value)}
-      >
-        <option value=""></option>
-        <option value="Clothing">Clothing</option>
-        <option value="Household">Household</option>
-      </select>
-      <ProductList category={category}></ProductList>
-    </div>
-  );
+    return () => disconnect();
+  });
+
+  return <div></div>;
 }
 
 export default App;
