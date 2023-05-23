@@ -10,11 +10,10 @@ function App() {
   const [users, setUsers] = useState<User[]>([]);
   const [error, setError] = useState("");
 
-  useEffect(
-    /*we can not pass an async funct here*/ () => {
+  /*we can not pass an async funct here() => {
       // get -> promise -> res / error
-      // get -> await promise -> res / error
-      const fetchUsers = async () => {
+      // get -> await promise -> res / error*/
+  /*const fetchUsers = async () => {
         try {
           const res = await axios.get<User[]>(
             "https://jsonplaceholder.typicode.com/zusers"
@@ -26,8 +25,15 @@ function App() {
       };
       fetchUsers();
     },
-    []
-  );
+    []*/
+  useEffect(() => {
+    // Fake data website
+    // 'then will be executed when the promess is resolve
+    axios
+      .get<User[]>("https://jsonplaceholder.typicode.com/users*")
+      .then((res) => setUsers(res.data))
+      .catch((err) => setError(err.message));
+  }, []);
 
   return (
     <>
